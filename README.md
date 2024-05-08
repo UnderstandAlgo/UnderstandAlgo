@@ -15,3 +15,14 @@ Algorithms\
 &emsp;&emsp;-\
 &emsp;&emsp;-\
 &emsp;searching
+
+
+<details><summary>
+
+[Algo](Algorithms)
+
+</summary>
+
+Algos
+
+</details>
