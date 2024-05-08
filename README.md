@@ -1,3 +1,10 @@
+# Prototyping state
+
+**Todo**
+prototype website
+reasearch frameworks for visuals
+add contents
+
 # UnderstandAlgo
 
 General plan for the strucuture of this repo:
