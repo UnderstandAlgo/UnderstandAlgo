@@ -77,5 +77,32 @@ TEST(StaticArrayTest, CheckSwap) {
     EXPECT_EQ(array2[0], 1);
     EXPECT_EQ(array2[1], 2);
     EXPECT_EQ(array2[2], 3);
+}
 
+// iterator uses the iterator to modify the elements of the array. This allows us to both read and write the elements of
+// the container.
+TEST(StaticArrayTest, CheckIterator) {
+    StaticArray<int, 10> array{};
+    array.fill(0);
+    StaticArray<int, 10>::iterator it; // declare iterator
+    int i = 0;
+    for (it = array.begin(); it != array.end(); ++it, ++i) {
+        *it = i; // assign the value i to the element pointed to by the iterator
+    }
+    for (i = 0; i < 10; ++i) {
+        EXPECT_EQ(array[i], i);
+    }
+}
+// const_iterator uses the iterator to only read the elements of the array. This allows us to make guarantees about not
+// modifying the elements of the container.
+TEST(StaticArrayTest, CheckConstIterator) {
+    StaticArray<int, 10> array{};
+    for (int i = 0; i < 10; ++i) {
+        array[i] = i;
+    }
+    StaticArray<int, 10>::const_iterator cit; // declare a const_iterator
+    int i = 0;
+    for (cit = array.begin(); cit != array.end(); ++cit, ++i) {
+        EXPECT_EQ(*cit, i); // check that the value of the element pointer to by the iterator is as expected
+    }
 }
