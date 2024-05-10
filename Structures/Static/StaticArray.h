@@ -26,10 +26,13 @@ public:
     const T& operator[](size_t index) const;
     T& at(size_t index);
     const T& at(size_t index) const;
-    T* begin() { return &m_Array[0]; }
-    const T* begin() const { return &m_Array[0]; }
-    T* end() { return &m_Array[N]; }
-    const T* end() const { return &m_Array[N]; }
+    T* data() noexcept { return m_Array; }
+    const T* data() const noexcept { return m_Array; }
+    T* begin() noexcept { return data(); }
+    const T* begin() const noexcept { return data(); }
+    T* end() noexcept { return data() + N; }
+    const T* end() const noexcept { return data() + N; }
+
     T& front() { return m_Array[0]; }
     const T& front() const { return m_Array[0]; }
     T& back() { return m_Array[N-1]; }
@@ -38,6 +41,15 @@ public:
     void swap(StaticArray& other);
     bool empty() const { return N == 0; }
     size_t size() const { return N; }
+
+    // Iterator
+    /*
+    typedef T* iterator;
+    typedef const T* const_iterator;
+    iterator begin() { return m_Array; }
+    iterator end() { return m_Array + N; }
+    */
+
 };
 
 #include "StaticArray.tpp" // Include Implementation File
