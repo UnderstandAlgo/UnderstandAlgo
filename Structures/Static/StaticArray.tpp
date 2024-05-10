@@ -23,17 +23,39 @@ T& StaticArray<T, N>::operator[](size_t index) { return m_Array[index]; }
 template <typename T, size_t N>
 const T& StaticArray<T, N>::operator[](size_t index) const { return m_Array[index]; }
 
+// Bound checking in a tight loop is bad for speed
 template <typename T, size_t N>
 T& StaticArray<T, N>::at(size_t index) {
     if (index >= N) throw std::out_of_range("Index out of bounds");
     return m_Array[index];
 }
+/* deduce this in c++23
+ template <typename T, size_t N>
+ decltype(auto) StaticArray<T, N>::at(size_t index) consteval
+ {
+    if constexpr (std::is_const_v<decltype(*this)>)
+    {
+        if (index >= N) throw std::out_of_range("Index out of bounds");
+        return static_cast<const T&>(m_Array[index]);
+    } else {
+        if (index >= N) throw std::out_of_range("Index out of bounds");
+        return static_cast<T&>(m_Array[index);
+    }
+ }*/
 
 template <typename T, size_t N>
 const T& StaticArray<T, N>::at(size_t index) const {
     if (index >= N) throw std::out_of_range("Index out of bounds");
     return m_Array[index];
 }
+
+/* cast away its own constness and then calls non-const at(), perform bounds check and array access in one place.
+ * const_cast can lead to UB if you use it to modify the value which was originally declared const.
+ template <typename T, size_t N>
+ const T& StaticArray<T, N>::at(size_t index) const {
+    return const_cast<StaticArray<T, N>&>(*this).at(index);
+ }
+ * */
 
 template <typename T, size_t N>
 void StaticArray<T, N>::fill(const T& value) {
