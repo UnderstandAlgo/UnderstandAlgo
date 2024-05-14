@@ -1,1 +1,0 @@
-Holds structures Static and Dynamic to be executed upon for display and traversal via Algorithms.
