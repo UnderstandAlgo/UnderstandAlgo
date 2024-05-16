@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Name of the executable and the source files
-add_executable(UnderstandAlgo main.cpp Algorithms/Searching/DFS/DFS.cpp)
+add_executable(UnderstandAlgo main.cpp Algorithms/Searching/DFS/DFS.cpp
+        Structures/ADT/Graph.hpp
+        Structures/ADT/Graph.tpp)
 
 
