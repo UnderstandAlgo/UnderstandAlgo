@@ -1,0 +1,4 @@
+[submodule "extern"]
+	path = extern
+	url = https://github.com/google/googletest.git
+	branch = release-1.14.1
