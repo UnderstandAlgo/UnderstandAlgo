@@ -24,6 +24,6 @@ CMake Deprecation Warning:
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
 -- Found Threads: TRUE  
--- Configuring done (1.1s)
+-- Configuring done (1.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug
