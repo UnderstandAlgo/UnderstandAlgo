@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-src"
-  "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-build"
-  "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix"
-  "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp"
-  "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
-  "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src"
-  "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
+  "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-src"
+  "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-build"
+  "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix"
+  "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp"
+  "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
+  "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src"
+  "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/aaron/CLionProjects/UnderstandAlgo_Aaron/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

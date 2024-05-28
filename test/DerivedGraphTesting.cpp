@@ -1,0 +1,49 @@
+// Created by Aaron H on 5/28/24.
+#include "../Structures/ADT/Graph.hpp"
+#include <gtest/gtest.h>
+
+TEST(DerivedGraphTest, TestNumVertices) {
+    DerivedGraph<int, int> graph;
+    ASSERT_EQ(graph.numVertices(), 0);
+    graph.addVertex(1);
+    ASSERT_EQ(graph.numVertices(), 1);
+}
+
+TEST(DerivedGraphTest, TestNumEdges) {
+    DerivedGraph<int, int> graph;
+    ASSERT_EQ(graph.numEdges(), 0);
+    graph.addVertex(1);
+    graph.addVertex(2);
+    graph.addEdge(1, 2, 3);
+    ASSERT_EQ(graph.numEdges(), 1);
+}
+
+TEST(DerivedGraphTest, TestAddVertex) {
+    DerivedGraph<int, int> graph;
+    graph.addVertex(1);
+    ASSERT_EQ(graph.numVertices(), 1);
+}
+
+TEST(DerivedGraphTest, TestAddEdge) {
+    DerivedGraph<int, int> graph;
+    graph.addVertex(1);
+    graph.addVertex(2);
+    graph.addEdge(1, 2, 3);
+    ASSERT_EQ(graph.numEdges(), 1);
+}
+
+TEST(DerivedGraphTest, TestRemoveEdge) {
+    DerivedGraph<int, int> graph;
+    graph.addVertex(1);
+    graph.addVertex(2);
+    graph.addEdge(1, 2, 3);
+    graph.removeEdge(1, 2);
+    ASSERT_EQ(graph.numEdges(), 0);
+}
+
+TEST(DerivedGraphTest, TestRemoveVertex) {
+    DerivedGraph<int, int> graph;
+    graph.addVertex(1);
+    graph.removeVertex(1);
+    ASSERT_EQ(graph.numVertices(), 0);
+}
