@@ -1,10 +1,9 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include <map>
-#include <list>
+#include <unordered_map>
+#include <vector>
 
-// Graph declaration
 template<typename V, typename E>
 class Graph {
 public:
@@ -16,14 +15,13 @@ public:
     virtual unsigned int numEdges() const = 0;
 };
 
-// DerivedGraph declaration
 template<typename V, typename E>
 class DerivedGraph: public Graph<V, E> {
 private:
-    std::map<V, std::list<std::pair<V, E>>> map;
+    std::unordered_map<V, std::vector<std::pair<V, E>>> map;
 public:
-    DerivedGraph() { // default ctor
-        map = std::map<V, std::list<std::pair<V, E>>>();
+    DerivedGraph() {
+        map = std::unordered_map<V, std::vector<std::pair<V, E>>>();
     }
 
     void addVertex(const V& vertex) override;
