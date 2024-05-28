@@ -31,8 +31,7 @@ if(BUILD_TESTS)
     enable_testing()
     include(GoogleTest)
     # Include the header files for the testing executable if needed
-    add_executable(tests test/test_main.cpp test/DerivedGraphTesting.cpp
-            test/DerivedGraphTesting.cpp)
+    add_executable(tests test/test_main.cpp test/DerivedGraphTesting.cpp)
     target_link_libraries(tests PRIVATE UnderstandAlgo_lib gtest gtest_main)
     gtest_discover_tests(tests)
 endif()
