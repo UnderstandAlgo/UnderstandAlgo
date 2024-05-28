@@ -8,22 +8,6 @@ CMake Deprecation Warning:
   use the cmake-file-api(7) to view CMake-generated project build trees.
 
 
--- The C compiler identification is AppleClang 15.0.0.15000309
--- The CXX compiler identification is AppleClang 15.0.0.15000309
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Found Python: /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9 (found version "3.9.6") found components: Interpreter 
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE  
--- Configuring done (1.0s)
+-- Configuring done (0.3s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/aaron/CLionProjects/UnderstandAlgo/cmake-build-debug

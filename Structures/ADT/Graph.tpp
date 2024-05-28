@@ -1,52 +1,62 @@
 #include "Graph.hpp"
-template<typename V, typename E>
-void DerivedGraph<V, E>::addVertex(const V& vertex) {
-    map.insert({vertex, std::vector<std::pair<V, E>>()});
+
+//Begin implementation of ElementaryGraph template methods
+
+template<typename VerticeType, typename EdgeType>
+DerivedGraph<VerticeType, EdgeType>::DerivedGraph() {
+    adjacencyList = std::unordered_map<VerticeType, std::vector<std::pair<VerticeType, EdgeType>>>();
 }
 
-template<typename V, typename E>
-void DerivedGraph<V, E>::removeVertex(const V &vertex) {
-    // Remove the vertex along with edges
-    map.erase(vertex);
+template<typename VerticeType, typename EdgeType>
+void DerivedGraph<VerticeType, EdgeType>::addVertex(const VerticeType& vertex) {
+    adjacencyList.insert({vertex, std::vector<std::pair<VerticeType, EdgeType>>()});
+}
 
-    // If graph is undirected, edges coming to this vertex also need to be removed
-    for (auto &i : map) {
-        i.second.erase(std::remove_if(i.second.begin(), i.second.end(),
-                                      [&vertex](const std::pair<V,E>& elt) { return elt.first == vertex; } ), i.second.end());
+template<typename VerticeType, typename EdgeType>
+void DerivedGraph<VerticeType, EdgeType>::removeVertex(const VerticeType &vertex) {
+    adjacencyList.erase(vertex);
+
+    for (auto &vertexPair : adjacencyList) {
+        vertexPair.second.erase(std::remove_if(vertexPair.second.begin(), vertexPair.second.end(),[&vertex]
+        (const std::pair<VerticeType, EdgeType>& edgePair) { return edgePair.first == vertex; } ), vertexPair.second.end());
     }
 }
 
-template<typename V, typename E>
-void DerivedGraph<V, E>::addEdge(const V &vertex1, const V &vertex2, const E &edge) {
-    map[vertex1].push_back({vertex2, edge});
-
-    // For undirected, also add reverse edge
-    map[vertex2].push_back({vertex1, edge});
+template<typename VerticeType, typename EdgeType>
+void DerivedGraph<VerticeType, EdgeType>::addEdge(const VerticeType &source, const VerticeType &destination, const EdgeType &weight) {
+    this->addEdge(source, destination, weight, false);  // calling second function with isDirected as false.
 }
 
-template<typename V, typename E>
-void DerivedGraph<V, E>::removeEdge(const V &vertex1, const V &vertex2) {
-    // Assuming undirected, so remove from both vertices
-    std::vector<std::pair<V, E>>& edges1 = map[vertex1];
-    std::vector<std::pair<V, E>>& edges2 = map[vertex2];
+template<typename VerticeType, typename EdgeType>
+void DerivedGraph<VerticeType, EdgeType>::addEdge(const VerticeType &source, const VerticeType &destination, const EdgeType &weight, bool isDirected) {
+    adjacencyList[source].push_back({destination, weight});
+    if (!isDirected) {
+        adjacencyList[destination].push_back({source, weight});
+    }
+}
+
+template<typename VerticeType, typename EdgeType>
+void DerivedGraph<VerticeType, EdgeType>::removeEdge(const VerticeType &vertex1, const VerticeType &vertex2) {
+    std::vector<std::pair<VerticeType, EdgeType>>& edges1 = adjacencyList[vertex1];
+    std::vector<std::pair<VerticeType, EdgeType>>& edges2 = adjacencyList[vertex2];
 
     edges1.erase(std::remove_if(edges1.begin(), edges1.end(),
-                                [&vertex2](const std::pair<V,E>& elt) { return elt.first == vertex2; } ), edges1.end());
+                                [&vertex2](const std::pair<VerticeType,EdgeType>& edgePair) { return edgePair.first == vertex2; } ), edges1.end());
 
     edges2.erase(std::remove_if(edges2.begin(), edges2.end(),
-                                [&vertex1](const std::pair<V,E>& elt) { return elt.first == vertex1; } ), edges2.end());
+                                [&vertex1](const std::pair<VerticeType,EdgeType>& edgePair) { return edgePair.first == vertex1; } ), edges2.end());
 }
 
-template<typename V, typename E>
-unsigned int DerivedGraph<V, E>::numVertices() const {
-    return map.size();
+template<typename VerticeType, typename EdgeType>
+unsigned int DerivedGraph<VerticeType, EdgeType>::numVertices() const {
+    return adjacencyList.size();
 }
 
-template<typename V, typename E>
-unsigned int DerivedGraph<V, E>::numEdges() const {
+template<typename VerticeType, typename EdgeType>
+unsigned int DerivedGraph<VerticeType, EdgeType>::numEdges() const {
     unsigned int count = 0;
-    for (const auto &i : map) {
-        count += i.second.size();
+    for (const auto &vertexPair : adjacencyList) {
+        count += vertexPair.second.size();
     }
-    return count / 2; // Since undirected, edges count is twice
+    return count / 2;
 }
