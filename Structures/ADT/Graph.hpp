@@ -1,8 +1,8 @@
 #ifndef GRAPH_H
 #define GRAPH_H
-// Change from map and list for average const-time complexity and cache efficiency
-#include <unordered_map>
-#include <vector>
+
+#include <map>
+#include <list>
 
 // Graph declaration
 template<typename V, typename E>
@@ -20,10 +20,10 @@ public:
 template<typename V, typename E>
 class DerivedGraph: public Graph<V, E> {
 private:
-    std::unordered_map<V, std::vector<std::pair<V, E>>> map;
+    std::map<V, std::list<std::pair<V, E>>> map;
 public:
     DerivedGraph() { // default ctor
-        map = std::unordered_map<V, std::vector<std::pair<V, E>>>();
+        map = std::map<V, std::list<std::pair<V, E>>>();
     }
 
     void addVertex(const V& vertex) override;

@@ -8,13 +8,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Create a static library
-add_library(UnderstandAlgo_lib STATIC
-        Algorithms/Searching/DFS/DFS.cpp)
-
-# Main executable
-add_executable(UnderstandAlgo main.cpp)
-target_link_libraries(UnderstandAlgo PRIVATE UnderstandAlgo_lib)
+# Name of the executable and the source files
+add_executable(UnderstandAlgo main.cpp Algorithms/Searching/DFS/DFS.cpp
+        Structures/ADT/Graph.hpp
+        Structures/ADT/Graph.tpp)
 
 
 # gtest configuration from https://programmador.com/posts/using-googletest-with-cmake/
@@ -26,15 +23,10 @@ FetchContent_Declare(
   GIT_TAG release-1.12.1)
 FetchContent_MakeAvailable(googletest)
 
-# Include the gtest directories
-include_directories(${googletest_SOURCE_DIR}/googletest/include)
-
-option(BUILD_TESTS "Build Unit Tests" ON)
+option(BUILD_TESTS "Build Unit Tests" OFF)
 if(BUILD_TESTS)
     enable_testing()
     include(GoogleTest)
-    add_executable(tests test/test_main.cpp test/TestDerivedGraph.cpp)
-    target_link_libraries(tests PRIVATE UnderstandAlgo_lib gtest gtest_main)
-    gtest_discover_tests(tests)
+    add_subdirectory(tests)
 endif()
 
